@@ -5,8 +5,8 @@ import os.path as path
 
 class Theme:
 
-    def __init__(self, theme_name=None):
-        self.theme_list = list_themes()
+    def __init__(self, theme_name=None, local=True):
+        self.theme_list = list_themes(local)
         if theme_name is None:
             mpl.rcParams.update(mpl.rcParamsDefault)
             self.theme_name = "Matplotlib"
@@ -29,7 +29,7 @@ class Theme:
     def __str__(self):
         return self.theme_name + " is the active theme"
 
-    def set_theme(self, theme_name=None):
+    def set_theme(self, theme_name=None, local=False):
         """
         Passes values from our selected theme (or defaults)
 
@@ -41,7 +41,7 @@ class Theme:
         =======
         changed properties of instantiated class
         """
-        set_params(self, theme_name)
+        set_params(self, theme_name, local)
 
         return self
 

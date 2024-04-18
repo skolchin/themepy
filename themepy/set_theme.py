@@ -22,7 +22,7 @@ def list_themes(local=True):
     return theme_list
 
 
-def set_params(self, theme_name=None):
+def set_params(self, theme_name=None, local=False):
     """
     Passes values from our selected theme (or defaults)
     Input
@@ -82,7 +82,7 @@ def set_params(self, theme_name=None):
         self.title_font = {"fontfamily": mpl.rcParams['font.family']}
         self.body_font = {"fontfamily": mpl.rcParams['font.family']}
 
-    elif theme_name.lower() in list_themes(local=False):
+    elif not local and theme_name.lower() in list_themes(local=False):
         target_url = "https://raw.githubusercontent.com/petermckeeverPerform/themepy/master/themepy/themes/{}.txt"
         res = requests.get(target_url.format(theme_name.lower()))
         theme_dict = ast.literal_eval(res.text)
